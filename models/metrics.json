@@ -1,0 +1,151 @@
+{
+  "trained_at": "2026-08-14 01:43:32",
+  "dataset": "CLEAR Corpus 6.01 (CommonLit + Georgia State)",
+  "n_total": 4724,
+  "n_train": 3779,
+  "n_test": 945,
+  "target": "BT_easiness (Bradley-Terry, human pairwise judgements)",
+  "seed": 42,
+  "benchmark": [
+    {
+      "model": "Ridge - linguistic + TF-IDF (tuned a=1.0)",
+      "rmse": 0.7061,
+      "mae": 0.5521,
+      "r2": 0.5625,
+      "note": "DEPLOYED MODEL"
+    },
+    {
+      "model": "GradientBoosting - linguistic",
+      "rmse": 0.834,
+      "mae": 0.662,
+      "r2": 0.3897,
+      "note": ""
+    },
+    {
+      "model": "RandomForest - linguistic",
+      "rmse": 0.8441,
+      "mae": 0.6642,
+      "r2": 0.3749,
+      "note": ""
+    },
+    {
+      "model": "Ridge - 15 linguistic features",
+      "rmse": 0.8467,
+      "mae": 0.6746,
+      "r2": 0.371,
+      "note": "no lexical content"
+    },
+    {
+      "model": "Flesch-Kincaid grade level only",
+      "rmse": 0.9142,
+      "mae": 0.7292,
+      "r2": 0.2667,
+      "note": "the formula schools use today - this is the number to beat"
+    },
+    {
+      "model": "Baseline - predict mean",
+      "rmse": 1.0703,
+      "mae": 0.8816,
+      "r2": -0.0051,
+      "note": "no information"
+    }
+  ],
+  "winner": {
+    "model": "Ridge - linguistic + TF-IDF (tuned a=1.0)",
+    "rmse": 0.7061,
+    "mae": 0.5521,
+    "r2": 0.5625,
+    "note": "DEPLOYED MODEL"
+  },
+  "tuning_curve": [
+    {
+      "alpha": 0.3,
+      "cv_rmse": 0.7382
+    },
+    {
+      "alpha": 1.0,
+      "cv_rmse": 0.6816
+    },
+    {
+      "alpha": 3.0,
+      "cv_rmse": 0.6817
+    },
+    {
+      "alpha": 10.0,
+      "cv_rmse": 0.7197
+    },
+    {
+      "alpha": 30.0,
+      "cv_rmse": 0.7645
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "flesch_reading_ease",
+      "importance": 0.3386
+    },
+    {
+      "feature": "max_sentence_len",
+      "importance": 0.0737
+    },
+    {
+      "feature": "pct_polysyllabic",
+      "importance": 0.0664
+    },
+    {
+      "feature": "type_token_ratio",
+      "importance": 0.0608
+    },
+    {
+      "feature": "pct_common_words",
+      "importance": 0.0578
+    },
+    {
+      "feature": "word_count",
+      "importance": 0.0553
+    },
+    {
+      "feature": "pct_capitalised",
+      "importance": 0.055
+    },
+    {
+      "feature": "mean_word_len",
+      "importance": 0.0528
+    },
+    {
+      "feature": "pct_long_words",
+      "importance": 0.0527
+    },
+    {
+      "feature": "comma_rate",
+      "importance": 0.0425
+    },
+    {
+      "feature": "mean_syllables",
+      "importance": 0.0374
+    },
+    {
+      "feature": "flesch_kincaid_grade",
+      "importance": 0.0361
+    },
+    {
+      "feature": "mean_sentence_len",
+      "importance": 0.0302
+    },
+    {
+      "feature": "apostrophe_rate",
+      "importance": 0.029
+    },
+    {
+      "feature": "sentence_count",
+      "importance": 0.0116
+    }
+  ],
+  "band_cuts": [
+    -1.8704187263999998,
+    -1.215510866,
+    -0.6543936062000001,
+    -0.065009868
+  ],
+  "train_seconds": 21.5
+}

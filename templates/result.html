@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ReadFit - Result</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>ReadFit</h1>
+
+    <div class="cards">
+      <div class="card">
+        <div class="k">Predicted readability</div>
+        <div class="v">{{ r.readability if r.readability is not none else 'n/a' }}</div>
+        <div class="n">{{ r.band }}</div>
+      </div>
+      <div class="card {% if r.decodability >= 95 %}good{% elif r.decodability >= 80 %}warn{% else %}bad{% endif %}">
+        <div class="k">Decodability</div>
+        <div class="v">{{ r.decodability }}%</div>
+        <div class="n">{{ r.lesson_label }}</div>
+      </div>
+      <div class="card">
+        <div class="k">Flesch-Kincaid</div>
+        <div class="v">{{ r.fk_grade }}</div>
+        <div class="n">grade level (baseline)</div>
+      </div>
+      <div class="card">
+        <div class="k">Length</div>
+        <div class="v">{{ r.word_count }}</div>
+        <div class="n">words</div>
+      </div>
+    </div>
+
+    <h2>Words this student cannot decode yet</h2>
+    {% if r.illegal_words %}
+      <table>
+        <tr><th>Word</th><th>Why</th></tr>
+        {% for w in r.illegal_words %}
+          <tr><td class="bad-word">{{ w.word }}</td><td>{{ w.reason }}</td></tr>
+        {% endfor %}
+      </table>
+      {% if r.top_violations %}
+        <p class="foot">Most common untaught patterns:
+          {% for g, c in r.top_violations %}<code>{{ g }}</code> ({{ c }}){% if not loop.last %}, {% endif %}{% endfor %}
+        </p>
+      {% endif %}
+    {% else %}
+      <p class="ok">Every word in this passage is decodable at {{ r.lesson_label }}.</p>
+    {% endif %}
+
+    <h2>Passage</h2>
+    <p class="passage">{{ text }}</p>
+
+    <p class="foot">
+      Model version: {{ r.model_version }} &middot; <a href="/">Analyze another</a>
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+data/CLEAR_corpus_final.xlsx
+data/predictions.db
+notebooks/
+.git/
+__pycache__/
+*.pyc
+venv/
+.venv/

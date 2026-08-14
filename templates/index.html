@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ReadFit - Reading Fit Analyzer</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>ReadFit</h1>
+    <p class="sub">Will this text fit this reader? A trained readability model plus a
+       deterministic phonics decodability check.</p>
+
+    {% if error %}<p class="err">{{ error }}</p>{% endif %}
+
+    <form action="/analyze" method="POST">
+      <label for="text">Paste a passage</label>
+      <textarea id="text" name="text" rows="12" required
+        placeholder="Paste any reading passage here...">{{ text or '' }}</textarea>
+
+      <label for="lesson">Phonics lesson the student has reached</label>
+      <select id="lesson" name="lesson">
+        {% for l in lessons %}
+          <option value="{{ l.lesson }}" {% if l.lesson == 34 %}selected{% endif %}>
+            {{ l.label }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <input type="submit" name="analyze" value="Analyze">
+    </form>
+
+    <p class="foot">
+      Model version: {{ version }} &middot;
+      JSON API: <code>POST /predict</code> &middot;
+      <a href="/health">/health</a> &middot;
+      <a href="/benchmark">/benchmark</a> &middot;
+      <a href="/metrics">/metrics</a>
+    </p>
+  </div>
+</body>
+</html>
