@@ -35,4 +35,4 @@ pairwise judgements. Metadata MIT-licensed.
     sudo docker run -d --restart on-failure -p 5000:5000 <dockerhub-user>/readfit:1.0
 
 ## Dashboard
-    API_URL=http://<GCP_IP>:5000 streamlit run dashboard/dashboard.py
+    API_URL=http://34.139.45.76:5000 streamlit run dashboard/dashboard.py
