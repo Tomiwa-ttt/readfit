@@ -1,0 +1,20 @@
+# Data — fetch CLEAR corpus per README, don't commit it
+data/CLEAR_corpus_final.xlsx
+data/predictions.db
+
+# Notebooks (scratch work, not part of the service)
+notebooks/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Environments
+venv/
+.venv/
+.env
+
+# OS
+.DS_Store
